@@ -16,9 +16,7 @@ In this page, we present the documentation of a fully-documented API-like tool t
    :maxdepth: 2
    :caption: Contents:
 
-   eda
-   code
-   
+   code   
 
    
 Indices and tables

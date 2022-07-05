@@ -6,8 +6,7 @@ GPT2Summarizer (``gpt2_summarizer.py``)
 	:private-members:
 	:special-members: __init__
 
-	
-	
+
 TrainGPT2Summarizer (``gpt2_summarizer_train.py``)
 ====================================================
 
@@ -15,7 +14,16 @@ TrainGPT2Summarizer (``gpt2_summarizer_train.py``)
 	:members:
 	:private-members:
 	:special-members: __init__
-		
+
+
+InferenceGPT2Summarizer (``gpt2_summarizer_infernce.py``)
+====================================================
+
+.. automodule:: gpt2_summarizer_inference
+	:members:
+	:private-members:
+	:special-members: __init__
+			
 		
 Utils (``utils.py``)
 ======================
