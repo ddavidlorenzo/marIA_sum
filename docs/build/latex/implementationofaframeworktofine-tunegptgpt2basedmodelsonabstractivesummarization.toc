@@ -8,6 +8,7 @@
 \contentsline {section}{\numberline {1.2}Recap}{12}{section.1.2}%
 \contentsline {chapter}{\numberline {2}GPT2Summarizer (\sphinxstyleliteralintitle {\sphinxupquote {gpt2\_summarizer.py}})}{15}{chapter.2}%
 \contentsline {chapter}{\numberline {3}TrainGPT2Summarizer (\sphinxstyleliteralintitle {\sphinxupquote {gpt2\_summarizer\_train.py}})}{21}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Utils (\sphinxstyleliteralintitle {\sphinxupquote {utils.py}})}{25}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Indices and tables}{29}{chapter.5}%
-\contentsline {chapter}{Python Module Index}{31}{section*.46}%
+\contentsline {chapter}{\numberline {4}InferenceGPT2Summarizer (\sphinxstyleliteralintitle {\sphinxupquote {gpt2\_summarizer\_inference.py}})}{25}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Utils (\sphinxstyleliteralintitle {\sphinxupquote {utils.py}})}{27}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Indices and tables}{31}{chapter.6}%
+\contentsline {chapter}{Python Module Index}{33}{section*.55}%

@@ -34,16 +34,27 @@
 \indexentry{max\_grad\_norm (gpt2\_summarizer\_train.TrainGPT2Summarizer property)@\spxentry{max\_grad\_norm}\spxextra{gpt2\_summarizer\_train.TrainGPT2Summarizer property}|hyperpage}{23}
 \indexentry{save\_trained\_model() (gpt2\_summarizer\_train.TrainGPT2Summarizer method)@\spxentry{save\_trained\_model()}\spxextra{gpt2\_summarizer\_train.TrainGPT2Summarizer method}|hyperpage}{23}
 \indexentry{train() (gpt2\_summarizer\_train.TrainGPT2Summarizer method)@\spxentry{train()}\spxextra{gpt2\_summarizer\_train.TrainGPT2Summarizer method}|hyperpage}{23}
-\indexentry{module@\spxentry{module}!utils@\spxentry{utils}|hyperpage}{25}
-\indexentry{utils@\spxentry{utils}!module@\spxentry{module}|hyperpage}{25}
-\indexentry{add\_special\_tokens() (in module utils)@\spxentry{add\_special\_tokens()}\spxextra{in module utils}|hyperpage}{25}
-\indexentry{compute\_rouge\_score() (in module utils)@\spxentry{compute\_rouge\_score()}\spxextra{in module utils}|hyperpage}{25}
-\indexentry{detokenize\_input() (in module utils)@\spxentry{detokenize\_input()}\spxextra{in module utils}|hyperpage}{25}
-\indexentry{format\_time() (in module utils)@\spxentry{format\_time()}\spxextra{in module utils}|hyperpage}{25}
-\indexentry{get\_tokenized\_text() (in module utils)@\spxentry{get\_tokenized\_text()}\spxextra{in module utils}|hyperpage}{25}
-\indexentry{load\_serialized\_data() (in module utils)@\spxentry{load\_serialized\_data()}\spxextra{in module utils}|hyperpage}{26}
-\indexentry{makedir() (in module utils)@\spxentry{makedir()}\spxextra{in module utils}|hyperpage}{26}
-\indexentry{prepare\_input\_summarizer() (in module utils)@\spxentry{prepare\_input\_summarizer()}\spxextra{in module utils}|hyperpage}{26}
-\indexentry{set\_seed() (in module utils)@\spxentry{set\_seed()}\spxextra{in module utils}|hyperpage}{26}
-\indexentry{split\_text\_into\_sentences\_spacy() (in module utils)@\spxentry{split\_text\_into\_sentences\_spacy()}\spxextra{in module utils}|hyperpage}{27}
-\indexentry{store\_serialized\_data() (in module utils)@\spxentry{store\_serialized\_data()}\spxextra{in module utils}|hyperpage}{27}
+\indexentry{module@\spxentry{module}!gpt2\_summarizer\_inference@\spxentry{gpt2\_summarizer\_inference}|hyperpage}{25}
+\indexentry{gpt2\_summarizer\_inference@\spxentry{gpt2\_summarizer\_inference}!module@\spxentry{module}|hyperpage}{25}
+\indexentry{InferenceGPT2Summarizer (class in gpt2\_summarizer\_inference)@\spxentry{InferenceGPT2Summarizer}\spxextra{class in gpt2\_summarizer\_inference}|hyperpage}{25}
+\indexentry{\_\_init\_\_() (gpt2\_summarizer\_inference.InferenceGPT2Summarizer method)@\spxentry{\_\_init\_\_()}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer method}|hyperpage}{25}
+\indexentry{\_config\_file (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{\_config\_file}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}|hyperpage}{25}
+\indexentry{\_model\_file (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{\_model\_file}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}|hyperpage}{25}
+\indexentry{attrs\_to\_str() (gpt2\_summarizer\_inference.InferenceGPT2Summarizer method)@\spxentry{attrs\_to\_str()}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer method}|hyperpage}{26}
+\indexentry{config (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{config}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}|hyperpage}{26}
+\indexentry{model (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{model}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}|hyperpage}{26}
+\indexentry{setup\_model() (gpt2\_summarizer\_inference.InferenceGPT2Summarizer method)@\spxentry{setup\_model()}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer method}|hyperpage}{26}
+\indexentry{state\_dict (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{state\_dict}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}|hyperpage}{26}
+\indexentry{module@\spxentry{module}!utils@\spxentry{utils}|hyperpage}{27}
+\indexentry{utils@\spxentry{utils}!module@\spxentry{module}|hyperpage}{27}
+\indexentry{add\_special\_tokens() (in module utils)@\spxentry{add\_special\_tokens()}\spxextra{in module utils}|hyperpage}{27}
+\indexentry{compute\_rouge\_score() (in module utils)@\spxentry{compute\_rouge\_score()}\spxextra{in module utils}|hyperpage}{27}
+\indexentry{detokenize\_input() (in module utils)@\spxentry{detokenize\_input()}\spxextra{in module utils}|hyperpage}{27}
+\indexentry{format\_time() (in module utils)@\spxentry{format\_time()}\spxextra{in module utils}|hyperpage}{27}
+\indexentry{get\_tokenized\_text() (in module utils)@\spxentry{get\_tokenized\_text()}\spxextra{in module utils}|hyperpage}{27}
+\indexentry{load\_serialized\_data() (in module utils)@\spxentry{load\_serialized\_data()}\spxextra{in module utils}|hyperpage}{28}
+\indexentry{makedir() (in module utils)@\spxentry{makedir()}\spxextra{in module utils}|hyperpage}{28}
+\indexentry{prepare\_input\_summarizer() (in module utils)@\spxentry{prepare\_input\_summarizer()}\spxextra{in module utils}|hyperpage}{28}
+\indexentry{set\_seed() (in module utils)@\spxentry{set\_seed()}\spxextra{in module utils}|hyperpage}{28}
+\indexentry{split\_text\_into\_sentences\_spacy() (in module utils)@\spxentry{split\_text\_into\_sentences\_spacy()}\spxextra{in module utils}|hyperpage}{29}
+\indexentry{store\_serialized\_data() (in module utils)@\spxentry{store\_serialized\_data()}\spxextra{in module utils}|hyperpage}{29}

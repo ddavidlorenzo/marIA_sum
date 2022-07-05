@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.13)  5 JUL 2022 02:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.13)  5 JUL 2022 15:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -866,7 +866,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
 
 [6]
-<eda_22_0.png, id=120, 851.18pt x 281.05pt>
+<eda_22_0.png, id=125, 851.18pt x 281.05pt>
 File: eda_22_0.png Graphic file (type png)
 <use eda_22_0.png>
 Package pdftex.def Info: eda_22_0.png  used on input line 625.
@@ -885,7 +885,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
 
 [7 <./eda_22_0.png>]
-<eda_29_0.png, id=130, 851.18pt x 281.05pt>
+<eda_29_0.png, id=135, 851.18pt x 281.05pt>
 File: eda_29_0.png Graphic file (type png)
 <use eda_29_0.png>
 Package pdftex.def Info: eda_29_0.png  used on input line 768.
@@ -900,7 +900,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
 
 [8 <./eda_29_0.png>]
-<eda_37_0.png, id=136, 859.21pt x 281.05pt>
+<eda_37_0.png, id=141, 859.21pt x 281.05pt>
 File: eda_37_0.png Graphic file (type png)
 <use eda_37_0.png>
 Package pdftex.def Info: eda_37_0.png  used on input line 938.
@@ -924,7 +924,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
 
 [10]
-<eda_46_0.png, id=147, 857.2025pt x 281.05pt>
+<eda_46_0.png, id=152, 857.2025pt x 281.05pt>
 File: eda_46_0.png Graphic file (type png)
 <use eda_46_0.png>
 Package pdftex.def Info: eda_46_0.png  used on input line 1184.
@@ -942,7 +942,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
 
 [11 <./eda_46_0.png>]
-<eda_54_0.png, id=153, 851.18pt x 281.05pt>
+<eda_54_0.png, id=158, 851.18pt x 281.05pt>
 File: eda_54_0.png Graphic file (type png)
 <use eda_54_0.png>
 Package pdftex.def Info: eda_54_0.png  used on input line 1358.
@@ -1091,7 +1091,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
 
 [26]
-Underfull \hbox (badness 10000) in paragraph at lines 2792--2794
+Chapter 5.
+[27
+
+]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 22.87502pt, for example:
+(fancyhdr)                \setlength{\headheight}{22.87502pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
+
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 3009--3011
 []\T1/txtt/bx/n/10 protocol \T1/qtm/m/n/10 (\T1/txtt/m/sl/10 int, optional\T1/q
 tm/m/n/10 ) ^^U Pro-to-col used for \T1/qtm/m/it/10 pickle\T1/qtm/m/n/10 , by d
 e-fault
@@ -1105,19 +1118,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
 
-[27]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 22.87502pt, for example:
-(fancyhdr)                \setlength{\headheight}{22.87502pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
-
-[28
-
-]
-Chapter 5.
 [29]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1129,7 +1129,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [30
 
-] [31
+]
+Chapter 6.
+[31]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 22.87502pt, for example:
+(fancyhdr)                \setlength{\headheight}{22.87502pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-10.87502pt}.
+
+[32
+
+] [33
 
 
 ]
@@ -1140,13 +1153,13 @@ marization.ind.
 ion.aux)
 Package rerunfilecheck Info: File `implementationofaframeworktofine-tunegptgpt2
 basedmodelsonabstractivesummarization.out' has not changed.
-(rerunfilecheck)             Checksum: C3B1EAD06E8CE65766278A7C5E38B405;2404.
+(rerunfilecheck)             Checksum: 60092C411A72E5DCCD99C11D873BFC5E;2733.
  ) 
 Here is how much of TeX's memory you used:
- 14778 strings out of 478582
- 240812 string characters out of 2854159
- 659590 words of memory out of 3000000
- 32490 multiletter control sequences out of 15000+600000
+ 14802 strings out of 478582
+ 240982 string characters out of 2854159
+ 660532 words of memory out of 3000000
+ 32502 multiletter control sequences out of 15000+600000
  530350 words of font info for 75 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  70i,11n,76p,1255b,763s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -1168,9 +1181,9 @@ id/AppData/Roaming/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/David/
 AppData/Roaming/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/David/App
 Data/Roaming/MiKTeX/fonts/type1/public/txfonts/tcxtt.pfb>
 Output written on implementationofaframeworktofine-tunegptgpt2basedmodelsonabst
-ractivesummarization.pdf (35 pages, 423850 bytes).
+ractivesummarization.pdf (37 pages, 432232 bytes).
 PDF statistics:
- 388 PDF objects out of 1000 (max. 8388607)
- 96 named destinations out of 1000 (max. 500000)
- 142 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 416 PDF objects out of 1000 (max. 8388607)
+ 108 named destinations out of 1000 (max. 500000)
+ 150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

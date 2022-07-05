@@ -41,6 +41,7 @@
 <li class="toctree-l1"><a class="reference internal" href="eda.html">Exploratory Data Analysis of the <em>XL-Sum</em> dataset.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">GPT2Summarizer (<code class="docutils literal notranslate"><span class="pre">gpt2_summarizer.py</span></code>)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code.html#module-gpt2_summarizer_train">TrainGPT2Summarizer (<code class="docutils literal notranslate"><span class="pre">gpt2_summarizer_train.py</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code.html#module-gpt2_summarizer_inference">InferenceGPT2Summarizer (<code class="docutils literal notranslate"><span class="pre">gpt2_summarizer_inference.py</span></code>)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code.html#module-utils">Utils (<code class="docutils literal notranslate"><span class="pre">utils.py</span></code>)</a></li>
 </ul>
 
@@ -79,6 +80,7 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -95,12 +97,16 @@
       <li><a href="code.html#gpt2_summarizer.GPT2Summarizer.__init__">__init__() (gpt2_summarizer.GPT2Summarizer method)</a>
 
       <ul>
+        <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer.__init__">(gpt2_summarizer_inference.InferenceGPT2Summarizer method)</a>
+</li>
         <li><a href="code.html#gpt2_summarizer_train.TrainGPT2Summarizer.__init__">(gpt2_summarizer_train.TrainGPT2Summarizer method)</a>
 </li>
       </ul></li>
       <li><a href="code.html#gpt2_summarizer.GPT2Summarizer._config_file">_config_file (gpt2_summarizer.GPT2Summarizer property)</a>
 
       <ul>
+        <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer._config_file">(gpt2_summarizer_inference.InferenceGPT2Summarizer property)</a>
+</li>
         <li><a href="code.html#gpt2_summarizer_train.TrainGPT2Summarizer._config_file">(gpt2_summarizer_train.TrainGPT2Summarizer property)</a>
 </li>
       </ul></li>
@@ -109,6 +115,8 @@
       <li><a href="code.html#gpt2_summarizer.GPT2Summarizer._model_file">_model_file (gpt2_summarizer.GPT2Summarizer property)</a>
 
       <ul>
+        <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer._model_file">(gpt2_summarizer_inference.InferenceGPT2Summarizer property)</a>
+</li>
         <li><a href="code.html#gpt2_summarizer_train.TrainGPT2Summarizer._model_file">(gpt2_summarizer_train.TrainGPT2Summarizer property)</a>
 </li>
       </ul></li>
@@ -122,11 +130,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="code.html#utils.add_special_tokens">add_special_tokens() (in module utils)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="code.html#gpt2_summarizer.GPT2Summarizer.attrs_to_str">attrs_to_str() (gpt2_summarizer.GPT2Summarizer method)</a>
 
       <ul>
+        <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer.attrs_to_str">(gpt2_summarizer_inference.InferenceGPT2Summarizer method)</a>
+</li>
         <li><a href="code.html#gpt2_summarizer_train.TrainGPT2Summarizer.attrs_to_str">(gpt2_summarizer_train.TrainGPT2Summarizer method)</a>
 </li>
       </ul></li>
@@ -153,6 +161,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="code.html#utils.compute_rouge_score">compute_rouge_score() (in module utils)</a>
+</li>
+      <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer.config">config (gpt2_summarizer_inference.InferenceGPT2Summarizer property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -194,13 +204,20 @@
 </li>
       <li><a href="code.html#utils.get_tokenized_text">get_tokenized_text() (in module utils)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     gpt2_summarizer
 
       <ul>
         <li><a href="code.html#module-gpt2_summarizer">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    gpt2_summarizer_inference
+
+      <ul>
+        <li><a href="code.html#module-gpt2_summarizer_inference">module</a>
 </li>
       </ul></li>
       <li>
@@ -213,6 +230,14 @@
       <li><a href="code.html#gpt2_summarizer.GPT2Summarizer">GPT2Summarizer (class in gpt2_summarizer)</a>
 </li>
       <li><a href="code.html#gpt2_summarizer.GPT2Summarizer.gradient_accumulation_steps">gradient_accumulation_steps (gpt2_summarizer.GPT2Summarizer property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer">InferenceGPT2Summarizer (class in gpt2_summarizer_inference)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -238,11 +263,15 @@
 </li>
       <li><a href="code.html#gpt2_summarizer_train.TrainGPT2Summarizer.max_grad_norm">max_grad_norm (gpt2_summarizer_train.TrainGPT2Summarizer property)</a>
 </li>
+      <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer.model">model (gpt2_summarizer_inference.InferenceGPT2Summarizer property)</a>
+</li>
       <li>
     module
 
       <ul>
         <li><a href="code.html#module-gpt2_summarizer">gpt2_summarizer</a>
+</li>
+        <li><a href="code.html#module-gpt2_summarizer_inference">gpt2_summarizer_inference</a>
 </li>
         <li><a href="code.html#module-gpt2_summarizer_train">gpt2_summarizer_train</a>
 </li>
@@ -287,11 +316,15 @@
 </li>
       <li><a href="code.html#gpt2_summarizer_train.TrainGPT2Summarizer.save_trained_model">save_trained_model() (gpt2_summarizer_train.TrainGPT2Summarizer method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="code.html#utils.set_seed">set_seed() (in module utils)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer.setup_model">setup_model() (gpt2_summarizer_inference.InferenceGPT2Summarizer method)</a>
+</li>
       <li><a href="code.html#utils.split_text_into_sentences_spacy">split_text_into_sentences_spacy() (in module utils)</a>
+</li>
+      <li><a href="code.html#gpt2_summarizer_inference.InferenceGPT2Summarizer.state_dict">state_dict (gpt2_summarizer_inference.InferenceGPT2Summarizer property)</a>
 </li>
       <li><a href="code.html#utils.store_serialized_data">store_serialized_data() (in module utils)</a>
 </li>

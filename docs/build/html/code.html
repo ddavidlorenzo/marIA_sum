@@ -43,6 +43,7 @@
 <li class="toctree-l1"><a class="reference internal" href="eda.html">Exploratory Data Analysis of the <em>XL-Sum</em> dataset.</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GPT2Summarizer (<code class="docutils literal notranslate"><span class="pre">gpt2_summarizer.py</span></code>)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#module-gpt2_summarizer_train">TrainGPT2Summarizer (<code class="docutils literal notranslate"><span class="pre">gpt2_summarizer_train.py</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-gpt2_summarizer_inference">InferenceGPT2Summarizer (<code class="docutils literal notranslate"><span class="pre">gpt2_summarizer_inference.py</span></code>)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#module-utils">Utils (<code class="docutils literal notranslate"><span class="pre">utils.py</span></code>)</a></li>
 </ul>
 
@@ -717,6 +718,153 @@ optimizer.</p>
 (1) <a class="reference external" href="https://mccormickml.com/2019/07/22/BERT-fine-tuning/#43-training-loop">https://mccormickml.com/2019/07/22/BERT-fine-tuning/#43-training-loop</a>
 (2) <a class="reference external" href="https://colab.research.google.com/github/kozodoi/website/blob/master/_notebooks/2021-02-19-gradient-accumulation.ipynb#scrollTo=ISFvH2p8dqYQ">https://colab.research.google.com/github/kozodoi/website/blob/master/_notebooks/2021-02-19-gradient-accumulation.ipynb#scrollTo=ISFvH2p8dqYQ</a>
 (3) <a class="reference external" href="https://github.com/SKRohit/Generating_Text_Summary_With_GPT2/blob/master/train_gpt2_summarizer.py">https://github.com/SKRohit/Generating_Text_Summary_With_GPT2/blob/master/train_gpt2_summarizer.py</a></p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gpt2_summarizer_inference">
+<span id="inferencegpt2summarizer-gpt2-summarizer-inference-py"></span><h1>InferenceGPT2Summarizer (<code class="docutils literal notranslate"><span class="pre">gpt2_summarizer_inference.py</span></code>)<a class="headerlink" href="#module-gpt2_summarizer_inference" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">gpt2_summarizer_inference.</span></span><span class="sig-name descname"><span class="pre">InferenceGPT2Summarizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checkpoint_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_data_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_train_epochs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_accumulation_steps</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checkpoint_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_data_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_train_epochs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_accumulation_steps</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of a <cite>InferenceGPT2Summarizer</cite> instance, which provides all necessary functionality
+to allow the use of a fine-tuned GPT2-like architecture for abstractive summarization at inference
+i.e., to generate summaries on unseen data, both in an as-is basis (see <cite>self.generate_sample</cite>) or
+provided a <cite>GPT2SumDataset</cite> (see <cite>self.generate_summaries_from_dataset</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>checkpoint_name</strong> (<em>str</em>) – Model id of a pretrained HuggingFace Transformer hosted inside a model repo on
+huggingface.co</p></li>
+<li><p><strong>train_data_name</strong> (<em>str</em>) – Identifier of the training dataset on which the model has been trained.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Training batch size</p></li>
+<li><p><strong>num_train_epochs</strong> (<em>int</em>) – Number of training epochs</p></li>
+<li><p><strong>gradient_accumulation_steps</strong> (<em>int</em>) – Number of gradient accumulation steps</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em>) – Number of workers available</p></li>
+<li><p><strong>device</strong> (<em>torch.device</em>) – torch.device object representing the device on which a torch.Tensor is or
+will be allocated.</p></li>
+<li><p><strong>output_dir</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Path</em><em>]</em>) – Output directory whereby outputs generated at training are stored.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer._config_file">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">_config_file</span></span><em class="property"><span class="pre">:</span> <span class="pre">pathlib.Path</span></em><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer._config_file" title="Permalink to this definition"></a></dt>
+<dd><p>Filepath of the configuration file (in <cite>json</cite> format) of the trained model. This file
+is loaded from the output directory (refer to <cite>self.output_dir</cite> prop.), and named after
+the “named” parameters utilized at training (refer to <cite>self.attrs_to_str()</cite> module).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Input filepath for the configuration file of the fine-tuned model</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer._model_file">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">_model_file</span></span><em class="property"><span class="pre">:</span> <span class="pre">pathlib.Path</span></em><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer._model_file" title="Permalink to this definition"></a></dt>
+<dd><p>Filepath for the trained model binary (in <cite>bin</cite> format). This file is loaded from the
+output directory (refer to <cite>self.output_dir</cite> prop.), and named after the “named” parameters
+utilized at training (refer to <cite>self.attrs_to_str()</cite> module).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Input filepath for the trained model binary</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer.attrs_to_str">
+<span class="sig-name descname"><span class="pre">attrs_to_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_data_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer.attrs_to_str" title="Permalink to this definition"></a></dt>
+<dd><p>Yield a string-like representation of the training attributes to fine-tune the model,
+serving as a straightforward and effective fashion to uniquely identify the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>add</strong> (<em>str</em><em>, </em><em>optional</em>) – Substring to append at the end of the string model descriptor, by default None</p></li>
+<li><p><strong>test_data_name</strong> (<em>str</em>) – Identifier of the test dataset to generate the necessary filepaths. By default, “”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Textual representation of the training parameters utilized for fine-tuning</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer.config">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="pre">:</span> <span class="pre">transformers.models.gpt2.configuration_gpt2.GPT2Config</span></em><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer.config" title="Permalink to this definition"></a></dt>
+<dd><p>GPT2 configuration object. It is used to instantiate a GPT-2 model
+according to the specified arguments, defining the model architecture.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>GPT2 configuration object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>GPT2Config</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer.model">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="pre">:</span> <span class="pre">transformers.models.gpt2.modeling_gpt2.GPT2LMHeadModel</span></em><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer.model" title="Permalink to this definition"></a></dt>
+<dd><p>GPT2 model fine tuned for abstractive summarization</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>GPT2 model fine tuned for abstractive summarization</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>GPT2LMHeadModel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer.setup_model">
+<span class="sig-name descname"><span class="pre">setup_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">transformers.models.gpt2.configuration_gpt2.GPT2Config</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer.setup_model" title="Permalink to this definition"></a></dt>
+<dd><p>Setup fine-tuned model from the configuration object and the learned parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>GPT2Config</em><em>, </em><em>optional</em>) – Custom model architecture configuration object. If not specified, the configuration
+used is that of <cite>self.config</cite>, which instantiates a <cite>GPT2Config</cite> object from
+<cite>self._config_file</cite> json configuration file</p></li>
+<li><p><strong>state_dict</strong> (<em>dict</em><em>, </em><em>optional</em>) – Custom <cite>state_dict</cite> object. If not specified, the learned parameters used are those
+of <cite>self.state_dict</cite>, which are deserialized from <cite>self._model_file</cite></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gpt2_summarizer_inference.InferenceGPT2Summarizer.state_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">state_dict</span></span><em class="property"><span class="pre">:</span> <span class="pre">dict</span></em><a class="headerlink" href="#gpt2_summarizer_inference.InferenceGPT2Summarizer.state_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Python dictionary object that maps each layer with learnable parameters (i.e., weights
+and biases) to its parameter tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Model learnable parameters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

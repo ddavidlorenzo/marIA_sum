@@ -2468,6 +2468,223 @@ The code for this method is largely based on the following work:
 
 
 
+\chapter{InferenceGPT2Summarizer (\sphinxstyleliteralintitle{\sphinxupquote{gpt2\_summarizer\_inference.py}})}
+\label{\detokenize{code:module-gpt2_summarizer_inference}}\label{\detokenize{code:inferencegpt2summarizer-gpt2-summarizer-inference-py}}\index{module@\spxentry{module}!gpt2\_summarizer\_inference@\spxentry{gpt2\_summarizer\_inference}}\index{gpt2\_summarizer\_inference@\spxentry{gpt2\_summarizer\_inference}!module@\spxentry{module}}\index{InferenceGPT2Summarizer (class in gpt2\_summarizer\_inference)@\spxentry{InferenceGPT2Summarizer}\spxextra{class in gpt2\_summarizer\_inference}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{gpt2\_summarizer\_inference.}}\sphinxbfcode{\sphinxupquote{InferenceGPT2Summarizer}}}{\emph{\DUrole{n}{checkpoint\_name}\DUrole{p}{:} \DUrole{n}{str}}, \emph{\DUrole{n}{train\_data\_name}\DUrole{p}{:} \DUrole{n}{str}}, \emph{\DUrole{n}{batch\_size}\DUrole{p}{:} \DUrole{n}{int}}, \emph{\DUrole{n}{num\_train\_epochs}\DUrole{p}{:} \DUrole{n}{int}}, \emph{\DUrole{n}{gradient\_accumulation\_steps}\DUrole{p}{:} \DUrole{n}{int}}, \emph{\DUrole{n}{num\_workers}\DUrole{p}{:} \DUrole{n}{int}}, \emph{\DUrole{n}{device}\DUrole{p}{:} \DUrole{n}{torch.device}}, \emph{\DUrole{n}{output\_dir}\DUrole{p}{:} \DUrole{n}{Union\DUrole{p}{{[}}str\DUrole{p}{, }pathlib.Path\DUrole{p}{{]}}}}}{}~\index{\_\_init\_\_() (gpt2\_summarizer\_inference.InferenceGPT2Summarizer method)@\spxentry{\_\_init\_\_()}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer.__init__}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\emph{\DUrole{n}{checkpoint\_name}\DUrole{p}{:} \DUrole{n}{str}}, \emph{\DUrole{n}{train\_data\_name}\DUrole{p}{:} \DUrole{n}{str}}, \emph{\DUrole{n}{batch\_size}\DUrole{p}{:} \DUrole{n}{int}}, \emph{\DUrole{n}{num\_train\_epochs}\DUrole{p}{:} \DUrole{n}{int}}, \emph{\DUrole{n}{gradient\_accumulation\_steps}\DUrole{p}{:} \DUrole{n}{int}}, \emph{\DUrole{n}{num\_workers}\DUrole{p}{:} \DUrole{n}{int}}, \emph{\DUrole{n}{device}\DUrole{p}{:} \DUrole{n}{torch.device}}, \emph{\DUrole{n}{output\_dir}\DUrole{p}{:} \DUrole{n}{Union\DUrole{p}{{[}}str\DUrole{p}{, }pathlib.Path\DUrole{p}{{]}}}}}{{ $\rightarrow$ None}}
+\sphinxAtStartPar
+Constructor of a \sphinxtitleref{InferenceGPT2Summarizer} instance, which provides all necessary functionality
+to allow the use of a fine\sphinxhyphen{}tuned GPT2\sphinxhyphen{}like architecture for abstractive summarization at inference
+i.e., to generate summaries on unseen data, both in an as\sphinxhyphen{}is basis (see \sphinxtitleref{self.generate\_sample}) or
+provided a \sphinxtitleref{GPT2SumDataset} (see \sphinxtitleref{self.generate\_summaries\_from\_dataset}).
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{checkpoint\_name}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} Model id of a pretrained HuggingFace Transformer hosted inside a model repo on
+huggingface.co
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{train\_data\_name}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} Identifier of the training dataset on which the model has been trained.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{batch\_size}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} Training batch size
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num\_train\_epochs}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} Number of training epochs
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{gradient\_accumulation\_steps}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} Number of gradient accumulation steps
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num\_workers}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} Number of workers available
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{device}} (\sphinxstyleliteralemphasis{\sphinxupquote{torch.device}}) \textendash{} torch.device object representing the device on which a torch.Tensor is or
+will be allocated.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{output\_dir}} (\sphinxstyleliteralemphasis{\sphinxupquote{Union}}\sphinxstyleliteralemphasis{\sphinxupquote{{[}}}\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{Path}}\sphinxstyleliteralemphasis{\sphinxupquote{{]}}}) \textendash{} Output directory whereby outputs generated at training are stored.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_config\_file (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{\_config\_file}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer._config_file}}\pysigline{\sphinxbfcode{\sphinxupquote{property }}\sphinxbfcode{\sphinxupquote{\_config\_file}}\sphinxbfcode{\sphinxupquote{: pathlib.Path}}}
+\sphinxAtStartPar
+Filepath of the configuration file (in \sphinxtitleref{json} format) of the trained model. This file
+is loaded from the output directory (refer to \sphinxtitleref{self.output\_dir} prop.), and named after
+the “named” parameters utilized at training (refer to \sphinxtitleref{self.attrs\_to\_str()} module).
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+Input filepath for the configuration file of the fine\sphinxhyphen{}tuned model
+
+\item[{Return type}] \leavevmode
+\sphinxAtStartPar
+Path
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_model\_file (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{\_model\_file}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer._model_file}}\pysigline{\sphinxbfcode{\sphinxupquote{property }}\sphinxbfcode{\sphinxupquote{\_model\_file}}\sphinxbfcode{\sphinxupquote{: pathlib.Path}}}
+\sphinxAtStartPar
+Filepath for the trained model binary (in \sphinxtitleref{bin} format). This file is loaded from the
+output directory (refer to \sphinxtitleref{self.output\_dir} prop.), and named after the “named” parameters
+utilized at training (refer to \sphinxtitleref{self.attrs\_to\_str()} module).
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+Input filepath for the trained model binary
+
+\item[{Return type}] \leavevmode
+\sphinxAtStartPar
+Path
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{attrs\_to\_str() (gpt2\_summarizer\_inference.InferenceGPT2Summarizer method)@\spxentry{attrs\_to\_str()}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer.attrs_to_str}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{attrs\_to\_str}}}{\emph{\DUrole{n}{add}\DUrole{p}{:} \DUrole{n}{Optional\DUrole{p}{{[}}str\DUrole{p}{{]}}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{test\_data\_name}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}\textquotesingle{}}}}{{ $\rightarrow$ str}}
+\sphinxAtStartPar
+Yield a string\sphinxhyphen{}like representation of the training attributes to fine\sphinxhyphen{}tune the model,
+serving as a straightforward and effective fashion to uniquely identify the model.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{add}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} Substring to append at the end of the string model descriptor, by default None
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{test\_data\_name}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} Identifier of the test dataset to generate the necessary filepaths. By default, “”
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+Textual representation of the training parameters utilized for fine\sphinxhyphen{}tuning
+
+\item[{Return type}] \leavevmode
+\sphinxAtStartPar
+str
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{config (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{config}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer.config}}\pysigline{\sphinxbfcode{\sphinxupquote{property }}\sphinxbfcode{\sphinxupquote{config}}\sphinxbfcode{\sphinxupquote{: transformers.models.gpt2.configuration\_gpt2.GPT2Config}}}
+\sphinxAtStartPar
+GPT2 configuration object. It is used to instantiate a GPT\sphinxhyphen{}2 model
+according to the specified arguments, defining the model architecture.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+GPT2 configuration object
+
+\item[{Return type}] \leavevmode
+\sphinxAtStartPar
+GPT2Config
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{model (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{model}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer.model}}\pysigline{\sphinxbfcode{\sphinxupquote{property }}\sphinxbfcode{\sphinxupquote{model}}\sphinxbfcode{\sphinxupquote{: transformers.models.gpt2.modeling\_gpt2.GPT2LMHeadModel}}}
+\sphinxAtStartPar
+GPT2 model fine tuned for abstractive summarization
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+GPT2 model fine tuned for abstractive summarization
+
+\item[{Return type}] \leavevmode
+\sphinxAtStartPar
+GPT2LMHeadModel
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{setup\_model() (gpt2\_summarizer\_inference.InferenceGPT2Summarizer method)@\spxentry{setup\_model()}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer.setup_model}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{setup\_model}}}{\emph{\DUrole{n}{config}\DUrole{p}{:} \DUrole{n}{Optional\DUrole{p}{{[}}transformers.models.gpt2.configuration\_gpt2.GPT2Config\DUrole{p}{{]}}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{state\_dict}\DUrole{p}{:} \DUrole{n}{Optional\DUrole{p}{{[}}dict\DUrole{p}{{]}}} \DUrole{o}{=} \DUrole{default_value}{None}}}{{ $\rightarrow$ None}}
+\sphinxAtStartPar
+Setup fine\sphinxhyphen{}tuned model from the configuration object and the learned parameters.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{config}} (\sphinxstyleliteralemphasis{\sphinxupquote{GPT2Config}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} Custom model architecture configuration object. If not specified, the configuration
+used is that of \sphinxtitleref{self.config}, which instantiates a \sphinxtitleref{GPT2Config} object from
+\sphinxtitleref{self.\_config\_file} json configuration file
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{state\_dict}} (\sphinxstyleliteralemphasis{\sphinxupquote{dict}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} Custom \sphinxtitleref{state\_dict} object. If not specified, the learned parameters used are those
+of \sphinxtitleref{self.state\_dict}, which are deserialized from \sphinxtitleref{self.\_model\_file}
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{state\_dict (gpt2\_summarizer\_inference.InferenceGPT2Summarizer property)@\spxentry{state\_dict}\spxextra{gpt2\_summarizer\_inference.InferenceGPT2Summarizer property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{code:gpt2_summarizer_inference.InferenceGPT2Summarizer.state_dict}}\pysigline{\sphinxbfcode{\sphinxupquote{property }}\sphinxbfcode{\sphinxupquote{state\_dict}}\sphinxbfcode{\sphinxupquote{: dict}}}
+\sphinxAtStartPar
+Python dictionary object that maps each layer with learnable parameters (i.e., weights
+and biases) to its parameter tensor.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+Model learnable parameters
+
+\item[{Return type}] \leavevmode
+\sphinxAtStartPar
+dict
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+
 \chapter{Utils (\sphinxstyleliteralintitle{\sphinxupquote{utils.py}})}
 \label{\detokenize{code:module-utils}}\label{\detokenize{code:utils-utils-py}}\index{module@\spxentry{module}!utils@\spxentry{utils}}\index{utils@\spxentry{utils}!module@\spxentry{module}}\index{add\_special\_tokens() (in module utils)@\spxentry{add\_special\_tokens()}\spxextra{in module utils}}
 
@@ -2822,6 +3039,7 @@ Utility to dump precomputed data to disk using \sphinxstyleemphasis{pickle}.
 \let\bigletter\sphinxstyleindexlettergroup
 \bigletter{g}
 \item\relax\sphinxstyleindexentry{gpt2\_summarizer}\sphinxstyleindexpageref{code:\detokenize{module-gpt2_summarizer}}
+\item\relax\sphinxstyleindexentry{gpt2\_summarizer\_inference}\sphinxstyleindexpageref{code:\detokenize{module-gpt2_summarizer_inference}}
 \item\relax\sphinxstyleindexentry{gpt2\_summarizer\_train}\sphinxstyleindexpageref{code:\detokenize{module-gpt2_summarizer_train}}
 \indexspace
 \bigletter{u}
