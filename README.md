@@ -21,7 +21,7 @@ The trained models deliver competitive results, yielding higher ROUGE scores tha
 </br>
 
 ## Code dependences
-
+```
 torch>=1.10.2
 tqdm==4.62.3
 transformers==4.17.0
@@ -33,4 +33,4 @@ bootstrap-flask
 flask-debug
 spacy
 rouge
-
+```
