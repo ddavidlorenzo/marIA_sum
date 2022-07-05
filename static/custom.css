@@ -1,0 +1,80 @@
+.logo{
+  height: 0.75em; 
+  width: .85em;
+  margin-bottom: 0.15em;
+}
+
+.jumbotron {
+  margin-top: 2em;
+  /* background-color: rgba(0, 0, 255, 0.064); */
+  padding-top:55px;
+  margin-bottom: 15px;
+}
+
+
+.flex-container {
+  /* We first create a flex layout context */
+  display: flex;
+
+  /* Then we define the flow direction 
+     and if we allow the items to wrap 
+   * Remember this is the same as:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+  flex-flow: row wrap;
+
+  /* Then we define how is distributed the remaining space */
+  justify-content: flex-start;
+
+  align-content: flex-start;
+
+  gap: 20px;
+}
+
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer{
+  margin-top: auto;
+  bottom: 0px;
+}
+
+.container-body{
+  margin-bottom: 4em;
+}
+
+div.editable {
+  min-height: 206px;
+  cursor: wait;
+  border: 1px solid #ccc;
+  background-color: rgb(233, 236, 239);
+  border-radius: 5px;
+  padding: 10px;
+  resize: vertical;
+  overflow: none;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+strong {
+  font-weight: bold;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+#side .nav-link.active,
+#side .nav-link:hover,
+#side .nav-link:focus{
+  color: #111;
+  border-bottom: 1px #000 dashed;
+}

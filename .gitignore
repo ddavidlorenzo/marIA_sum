@@ -1,0 +1,14 @@
+.vscode
+.ipynb_checkpoints
+__pycache__
+output/logs/
+summaries/all/
+output/model*
+models_encdec/
+models_roberta2gpt2/
+output_roberta2gpt2/*/checkpoint*
+output_encdec/*/checkpoint*
+flask_app/traingpt2/
+traingpt2/
+/home/s730/s730251/projects/gpt2-maria/Generating_Text_Summary_With_GPT2/traingpt2/
+xnli/

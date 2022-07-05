@@ -1,0 +1,57 @@
+.toggle .header {
+    display: block;
+    clear: both;
+}
+
+.toggle .header:after {
+    content: " ▶";
+}
+
+.toggle .header.open:after {
+    content: " ▼";
+}
+
+.rst-content .menuselection {
+  background-color: #f9ebb3;
+  border: 1px solid #f0b37e;
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.rst-content .guilabel {
+  border: 1px solid #777;
+  background-color: #cee3fb;
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.rst-content .toggle {
+  background: none repeat scroll 0 0 #e7f2fa;
+  padding: 12px;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+
+.rst-content .toggle .admonition-title {
+  display: block;
+  clear: both;
+  cursor: pointer;
+}
+
+.rst-content .toggle .admonition-title:after {
+  content: ' ▶';
+}
+
+.rst-content .toggle .admonition-title.open:after {
+  content: ' ▼';
+}
+
+.rst-content .toggle p:last-child {
+  margin-bottom: 0;
+}
+.rst-content code.literal,
+.rst-content tt.literal,
+.rst-content cite {
+  color: #8c1313;
+}
+

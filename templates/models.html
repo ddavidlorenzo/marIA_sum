@@ -1,0 +1,187 @@
+{%- extends "base.html" %}
+
+{# Loads some of the macros included with Flask-Bootstrap. We are using the
+utils module here to automatically render Flask's flashed messages in a
+bootstrap friendly manner #}
+{% import "bootstrap/utils.html" as utils %}
+
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='pretty-json.css')}}" />
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static', filename='jquery-1.11.1.min.js')}}"></script>
+
+<!-- Dependencies of pretty-json -->
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.13.4/underscore-umd-min.js"></script>
+<script src="{{url_for('static', filename='backbone-min.js')}}"></script>
+<script src="{{url_for('static', filename='pretty-json-min.js')}}"></script>
+
+<!-- Plotly -->
+<script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="container container-body">
+  <div class="row h-100 mt-5">
+    <aside class="col-md-3 bg-light" id="left">
+      <div class="mt-5 mb-3 sticky-top" id="side">
+        <ul class="nav flex-md-column flex-row justify-content-between" id="sidenav">
+          <li class="nav-item"><a href="#section-select" class="nav-link pl-0">Model selection</a></li>
+          <li class="nav-item"><a href="#section-sheet" class="nav-link pl-0">Model sheet</a></li>
+          <li class="nav-item"><a href="#section-rouge" class="nav-link pl-0">Model Performance</a></li>
+          <li class="nav-item"><a href="#section-train" class="nav-link pl-0">Training Statistics</a></li>
+          <li class="nav-item"><a href="#section-configuration" class="nav-link pl-0">Model Configuration</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="col py-5">
+      <div class="row position-relative">
+        <div class="col">
+          <div class="anchor" id="section-select">
+            <h2 class="mb-4"> <label for="selectModel" class="form-label"> Selected fine-tuned model</label></h2>
+            <select id="selectModel" onchange="onModelSelectChange(this)" class="form-select" aria-label="Select model">
+              {% for model in models %}
+              <option value="{{model}}">{{model}}</option>
+              {% endfor %}
+            </select>
+            <div class="anchor" id="section-sheet">
+              <h2 class="mt-5 mb-4">Model Sheet</h2>
+              <ul class="list-group list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Model identifier</div>
+                      Local model identifier
+                  </div>
+                  <span id="sheetModelId"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Based on checkpoint</div>
+                      Language model identifier
+                  </div>
+                  <span id="sheetCheckpointId"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Epochs</div>
+                      Number of training epochs
+                  </div>
+                  <span  id="sheetTrainEpochs" class="badge bg-primary rounded-pill"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Batch size</div>
+                      Training batch size
+                  </div>
+                  <span id="sheetBatchSize" class="badge bg-primary rounded-pill"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Gradient accumulation steps</div>
+                      Number of small batches run before performing a backward pass
+                  </div>
+                  <span id="sheetGradientAccumulationSteps" class="badge bg-primary rounded-pill"></span>
+                </li>
+              </ul>
+            <div class="anchor" id="section-rouge">
+              <h2 class="mt-5 mb-4">Model performance (ROUGE)</h2>
+              <div id="placeholderRouge">
+              </div>
+              <div class="anchor" id="section-train">
+                <h2 class="mt-5 mb-4">Training Statistics</h2>
+                <div id="placeholderTrain"></div>
+                <div id='trainPlots'><!-- Plotly chart will be drawn inside this DIV --></div>
+                <div class="anchor" id="section-configuration"></div>
+                <h2 class="mt-5 mb-4">Model Configuration</h2>
+                <span id="placeholderConfig"></span>
+              </div>
+            </div>
+    </main>
+  </div>
+</div>
+<script>
+  function plotTrainStats(stats, on_id="trainPlots"){
+    let trace1 = {
+        x: stats['epoch'],
+        y: stats['Training Loss'],
+        type: 'scatter',
+        name: 'Training Loss'
+      };
+      let trace2 = {
+        x: stats['epoch'],
+        y: stats['Valid. Loss'],
+        type: 'scatter',
+        name: 'Valid. Loss'
+      };
+      let trace3 = {
+        x: stats['epoch'],
+        y: stats['Perplexity'],
+        type: 'scatter',
+        name: 'Perplexity',
+        yaxis: 'y2',
+      };
+      let data = [trace1, trace2, trace3];
+
+      let layout = {
+         title:'Per epoch training/val loss and perplexity',
+         xaxis: {title: 'Epoch'},
+         yaxis: {title: 'Loss'},
+         yaxis2: {
+          title: 'Perplexity',
+          overlaying: 'y',
+          side: 'right'
+        }
+      };
+      Plotly.newPlot('trainPlots', data, layout);
+  }
+
+  function getFieldFromModelId(modelId, field){
+    return parseInt(modelId.split(`${field}_`)[1]?.split('_')[0]);
+  }
+
+  function populateModelSheet(modelId) {
+    $('#sheetModelId').text(modelId)
+    let split_ = modelId.split('_')
+    let checkpointId = `${split_[0]}/${split_[1]}`
+    $('#sheetCheckpointId').html(`<a href="https://huggingface.co/${checkpointId}">${checkpointId}</a>`)
+    let epochs = getFieldFromModelId(modelId, 'epochs')
+    $('#sheetTrainEpochs').text(epochs)
+    let batch = getFieldFromModelId(modelId, 'batch')
+    $('#sheetBatchSize').text(batch)
+    let gradient_accumulation_steps = getFieldFromModelId(modelId, 'gradient_accumulation_steps')
+    $('#sheetGradientAccumulationSteps').text(gradient_accumulation_steps)
+  }
+  function onModelSelectChange(select) {
+    modelId = select.value
+    $.get("/model_card/" + modelId, function (results) {
+      $("#placeholderRouge").html(results.rouge)
+      $("#placeholderTrain").html(results.train_stats)
+      var node = new PrettyJSON.view.Node({
+        el: $('#placeholderConfig'),
+        data: results.config
+      });
+      plotTrainStats(results.plot_data);
+      populateModelSheet(modelId);
+    })
+      .fail(function () {
+        alert("error");
+      })
+  }
+  (function () {
+    let model_id = "{{model_id}}"
+    if (model_id) {
+      document.getElementById('selectModel').value = model_id;
+    }
+    onModelSelectChange(document.getElementById('selectModel'))
+  })();
+</script>
+
+<script>
+
+</script>
+{%- endblock %}

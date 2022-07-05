@@ -1,0 +1,70 @@
+{%- extends "base.html" %}
+
+{# Loads some of the macros included with Flask-Bootstrap. We are using the
+   utils module here to automatically render Flask's flashed messages in a
+   bootstrap friendly manner #}
+{% import "bootstrap/utils.html" as utils %}
+
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='custom_select.css')}}" />
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="jumbotron container-fluid p-5 bg-light"> <!-- bg-light is background color & p-5 is padding -->
+      <div class="d-flex align-items-center">
+        <h1 class="display-2"><img class="logo" src="../static/assets/spain.png"></h1>
+        <h1 class="display-2">-Sum</h1>
+      </div>
+      <p class="lead">Summarize your texts using fine-tuned state of the art Spanish language models.</p>
+      <hr class="my-4">
+      <p>
+        <a class="btn btn-lg btn-primary" role="button"
+          href="./summarize" >Get started</a>
+      </p>
+    </div>
+    <div class="select-wrapper">
+      <div class="select">
+          <div class="select__trigger"><span id="selectedSpan">Hola!</span>
+              <div class="arrow"></div>
+          </div>
+          <div class="custom-options">
+              <span class="custom-option" data-value="tesla">Tesla</span>
+              <div class="d-flex custom-option justify-content-between" data-value="labeltowapa">Volvo <a href="/summarize"> sumamrize </a><i class="bi bi-info-circle"></i></div>
+              <span class="custom-option" data-value="mercedes">Mercedes</span>
+          </div>
+      </div>
+  </div>
+  </div>
+  <script>
+    document.querySelector('.select-wrapper').addEventListener('click', function() {
+      this.querySelector('.select').classList.toggle('open');
+  });
+
+  for (const option of document.querySelectorAll(".custom-option")) {
+    option.addEventListener('click', function() {
+        if (!this.classList.contains('selected')) {
+            this.parentNode.querySelector('.custom-option.selected').classList.remove('selected');
+            this.classList.add('selected');
+            this.closest('.select').querySelector('.select__trigger span').textContent = this.textContent;
+        }
+    })
+  }
+  window.addEventListener('click', function(e) {
+      const select = document.querySelector('.select')
+      if (!select.contains(e.target)) {
+          select.classList.remove('open');
+      }
+  });
+
+  (function () {
+    console.log('code run');
+    // Get first custom-option and add selected tag
+    option = document.querySelector(".custom-option")
+    option.classList.add('selected')
+    document.querySelector('.select__trigger span').textContent = option.attributes["data-value"].textContent;
+  })();
+  </script>
+{%- endblock %}
