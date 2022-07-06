@@ -557,9 +557,9 @@ if __name__ == '__main__':
 
     parser.add_argument("--test_data_dir", required=True, type=str, help="Parent directory containing the test dataset.") 
     parser.add_argument("--max_length",default=60, type=int, help="Max summary length")
-    parser.add_argument("--temperature",default=1.0, type=float, required=False, help="control the randomness of predictions by scaling the logits before applying softmax")
-    parser.add_argument("--top_k",default=50, type=int, required=False, help="keep only top k tokens with highest probability (top-k filtering)")
-    parser.add_argument("--top_p",default=0.9, type=float, required=False, help="keep the top tokens with cumulative probability >= top_p (nucleus filtering)")
+    parser.add_argument("--temperature",default=1.0, type=float, required=False, help="Introduce randomness of the predictions by scaling the model logits before applying softmax")
+    parser.add_argument("--top_k",default=10, type=int, required=False, help="Keep only top k tokens with highest probability (top-k filtering)")
+    parser.add_argument("--top_p",default=0.5, type=float, required=False, help="Keep the top tokens with cumulative probability >= top_p (nucleus filtering)")
     
     args = parser.parse_args()
 

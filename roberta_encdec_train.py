@@ -4,7 +4,7 @@ import pandas as pd
 from datasets import Dataset
 from transformers import AutoTokenizer, EncoderDecoderModel, Seq2SeqTrainer, Seq2SeqTrainingArguments
 from pathlib import Path
-from utils import makedir, store_serialized_data
+from utils import makedir
 
 
 
@@ -60,7 +60,6 @@ def attrs_to_str(args, add:str=None) -> str:
     enc_dec_type = "SHARED" if args.tie_weights else "R2R"
     data = Path(args.data_dir).name
     checkpoint_name = f"roberta-{args.model}-bne"
-    # add = "length_penalty_1_beam_1"
     fstring = f"{checkpoint_name}_{enc_dec_type}_{data}_epochs_{args.num_train_epochs}_batch_{args.batch_size}_gradsteps_{args.gradient_accumulation_steps}_min{args.summary_min_length}_max{args.summary_max_length}"
     return fstring if not add else f'{fstring}_{add}'
 
@@ -93,10 +92,8 @@ if __name__ == '__main__':
 
     checkpoint_name = f"PlanTL-GOB-ES/roberta-{args.model}-bne"
 
-    config = dict(
-        # Useful columns for fine-tuning.
-        cols=["text", "summary"]
-    )
+    # Useful columns for fine-tuning.
+    cols=["text", "summary"]
 
     # set decoding params   
     enc_dec_config = dict(
@@ -109,8 +106,8 @@ if __name__ == '__main__':
     decoder_max_length = args.summary_max_length         # Max length for product names
     decoder_min_length = args.summary_min_length
 
-    train_df = pd.read_json(train_filepath, lines=True)[config["cols"]]
-    val_df = pd.read_json(val_filepath, lines=True)[config["cols"]]
+    train_df = pd.read_json(train_filepath, lines=True)[cols]
+    val_df = pd.read_json(val_filepath, lines=True)[cols]
 
     train_dataset=Dataset.from_pandas(train_df)
     val_dataset = Dataset.from_pandas(val_df)
