@@ -23,8 +23,12 @@ def create_app(configfile=None):
 
     app.config['SECRET_KEY'] = 'devkey'
 
-    app.gpt2_model = load_dependencies()
-    
+    try:
+        app.gpt2_model = load_dependencies()
+    except:
+        print('ERROR: No model was loaded.')
+        pass
+
     return app
 
 # # create an app instance
