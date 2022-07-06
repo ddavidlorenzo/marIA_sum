@@ -50,8 +50,10 @@ $ flask run
 ```
 
 ### CMD
+```
 > set FLASK_APP=app
 > flask run
+```
 
 ### Powershell
 ```
