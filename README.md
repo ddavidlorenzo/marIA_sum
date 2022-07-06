@@ -43,8 +43,21 @@ The trained models deliver competitive results, yielding higher ROUGE scores tha
 
 ## Run the ES-Sum web application locally
 
+### BASH
+```
+$ export FLASK_APP=app
+$ flask run
+```
 
+### CMD
+> set FLASK_APP=app
+> flask run
 
+### Powershell
+```
+> $env:FLASK_APP = "app"
+> flask run
+```
 </br>
 
 ## Run the code
