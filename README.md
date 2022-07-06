@@ -21,16 +21,22 @@ The trained models deliver competitive results, yielding higher ROUGE scores tha
 </br>
 
 ## Performance
+Comparison of ROUGE F1 scores for abstractive summarization in Spanish corpora achieved by other proposals in the literature. 
+
+### Evaluation on the test set of the Spanish portion of XL-Sum
 
 | Model                           | ROUGE-1   | ROUGE-2   | ROUGE-L   |
 |---------------------------------|-----------|-----------|-----------|
-| MultiSumm (Cao et al., 2020)    | 31.18     | 12.24     | 26.22     |
-| NASes (Ahuir et al., 2021)      | 30.60     | 10.75     | 22.29     |
 | mT5 (Hasan et al., 2021)        | **30.93** | **12.14** | **23.76** |
 | MarIA GPT-2 BASE                | 21.02     | 4.37      | 17.26     |
 | MarIA GPT-2 LARGE               | 22.68     | 5.39      | 18.63     |
 | MarIA RoBERTa2RoBERTa BASE      | 21.24     | 4.74      | 16.62     |
-| MarIA RoBERTa2RoBERTa LARGE     | 20.89     | 4.81      | 16.56     |
+| MarIA RoBERTa2RoBERTa LARGE     | 20.89     | 4.81      | 16.56     | 
+
+
+### Evaluation on the samples of the test set of the Spanish portion of XL-Sum that fit entirely into MarIA LMs
+| Model                           | ROUGE-1   | ROUGE-2   | ROUGE-L   |
+|---------------------------------|-----------|-----------|-----------|
 | Distilled mT5 (Fernández, 2022) | **28.66** | **8.80**  | **23.11** |
 | MarIA GPT-2 BASE  zero-shot     | 19.35     | 3.63      | 16.26     |
 | MarIA GPT-2 BASE                | 25.32     | 6.90      | 21.39     |
@@ -38,6 +44,14 @@ The trained models deliver competitive results, yielding higher ROUGE scores tha
 | MarIA RoBERTa2RoBERTa BASE      | 25.11     | 7.07      | 19.80     |
 | MarIA RoBERTa2RoBERTa LARGE     | 23.67     | 6.49      | 18.91     | 
 
+
+### Non-comparable models
+These models are not comparable because they were tested on different datasets.
+
+| Model                           | ROUGE-1   | ROUGE-2   | ROUGE-L   |
+|---------------------------------|-----------|-----------|-----------|
+| MultiSumm (Cao et al., 2020)    | 31.18     | 12.24     | 26.22     |
+| NASes (Ahuir et al., 2021)      | 30.60     | 10.75     | 22.29     |
 
 </br>
 
