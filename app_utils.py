@@ -29,10 +29,10 @@ def get_params_from_model_id(model_id):
 def get_params_default():
     return dict(
         checkpoint_name="PlanTL-GOB-ES/gpt2-base-bne",
-        train_data_name="tokenized_512",
+        train_data_name="all",
         batch_size=8,
         num_train_epochs=3,
-        gradient_accumulation_steps=16
+        gradient_accumulation_steps=32
     )
 
 def get_field_from_model_id(model_id, field):
@@ -45,13 +45,33 @@ def get_dataname_from_model_id(model_id):
     else:
         return f'tokenized_{get_field_from_model_id(model_id, "tokenized")}'
 
+def path_to_rouge(model_id):
+    DIR_INFERENCE=Path("summaries", "inference")
+    if Path(DIR_INFERENCE, f'rouge_{model_id}_temperature_1_topk_10_topp_0.5.csv').exists():
+        return Path(DIR_INFERENCE, f'rouge_{model_id}_temperature_1_topk_10_topp_0.5.csv')
+    if 'all' in model_id:
+        print(model_id.replace("all_", "all_all_"))
+        print(model_id.replace("all_", "all_tokenized_512_"))
+        a = list(Path(DIR_INFERENCE).glob(f'rouge_{model_id.replace("all_", "all_all_")}_*.csv'))
+        b = list(Path(DIR_INFERENCE).glob(f'rouge_{model_id.replace("all_", "all_tokenized_512_")}_*.csv'))
+        c = a + b
+        return c[0]
+    else:
+        print(model_id.replace("tokenized_512_", "tokenized_512_all_"))
+        print(model_id.replace("tokenized_512_", "tokenized_512_tokenized_512_"))
+        a = list(Path(DIR_INFERENCE).glob(f'rouge_{model_id.replace("tokenized_512_", "tokenized_512_all_")}_*.csv'))
+        b = list(Path(DIR_INFERENCE).glob(f'rouge_{model_id.replace("tokenized_512_", "tokenized_512_tokenized_512_")}_*.csv'))
+        c = a + b
+        return c[0]
+
 def get_model_paths():
     DIR_OUTPUT=Path("output")
     DIR_INFERENCE=Path("summaries", "inference")
     path_to_train_stats = lambda x: Path(DIR_OUTPUT, f'train_stats_{x}.csv')
     path_to_model = lambda x: Path(DIR_OUTPUT, f'model_{x}.bin')
     path_to_config = lambda x: Path(DIR_OUTPUT, f'config_{x}.json')
-    path_to_rouge = lambda x: Path(DIR_INFERENCE, f'rouge_{x}_temperature_1_topk_10_topp_0.5.csv')
+    # path_to_rouge = lambda x: Path(DIR_INFERENCE, f'rouge_{x}_temperature_1_topk_10_topp_0.5.csv')
+    # path_to_rouge = lambda x: list(Path(DIR_INFERENCE).glob(f'rouge_{x}_*.csv'))[0]
 
     model_files = DIR_OUTPUT.glob('model*.bin')
     model_names = [str(model.name).replace('model_', '').replace('.bin', '') for model in model_files]

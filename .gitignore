@@ -8,3 +8,4 @@ models_encdec/
 output_encdec/*/checkpoint*
 flask_app/traingpt2/
 traingpt2/
+env/

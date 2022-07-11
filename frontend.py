@@ -17,11 +17,6 @@ def index():
     return render_template('index.html')
 
 
-@frontend.route('/test')
-def test():
-    return render_template('test.html')
-
-
 @frontend.route("/summarize/")
 def summarize():
     models_data = get_model_paths()
@@ -30,6 +25,7 @@ def summarize():
 
 
 @frontend.route("/compute_summary/", methods=['POST'])
+@frontend.route("/compute_summary", methods=['POST'])
 def compute_summary():
     # try:
     summary_length = int(request.form['summary_length'])
